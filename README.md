@@ -14,7 +14,7 @@
  2. Build a mine on top of some ore
  3. Send followers to mine the ore
  
- ![Generating NRG](images/generators.gif)
+ ![Generating NRG](images/generator.gif)
  
  4. Build a generator to generate energy 
  
