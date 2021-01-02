@@ -9,25 +9,29 @@
  
  1. Select a group of followers to move location
  
+ ![Houses](images/houses.gif)
+ 
+ 2. Build more houses to spawn more followers
+ 
  ![Mining some ore](images/mine.gif)
  
- 2. Build a mine on top of some ore
- 3. Send followers to mine the ore
+ 3. Build a mine on top of some ore
+ 4. Send followers to mine the ore
  
  ![Generating NRG](images/generator.gif)
  
- 4. Build a generator to generate energy 
+ 5. Build a generator to generate energy 
  
  ![Soldiers](images/soldiers.gif)
 
- 5. Build a barracks to train soldiers
+ 6. Build a barracks to train soldiers
  
  ![Tanks](images/tanks.gif)
  
- 6. Build a factory to create tanks
+ 7. Build a factory to create tanks
  
  ![Scrollin'](images/scrolling.gif)
  
- 7. Scroll around the map
+ 8. Scroll around the map
  
- 8. Listen to the randomly generated chiptune soundtrack
+ 9. Listen to the randomly generated chiptune soundtrack
