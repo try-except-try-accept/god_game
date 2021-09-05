@@ -128,7 +128,7 @@ class Game:
         self.left, self.right, self.up, self.down = False, False, False, False
         self.view_x_move = 0
         self.view_y_move = 0
-        self.maze = Maze()
+        self.mazes = []
 
 
         for object in IMPLEMENTED_BUILDINGS:
@@ -285,6 +285,7 @@ class Game:
                     print("skipping")
                     prep_music()
                 elif true_mouse_y >= HEIGHT - (ICON_SPACER*2):
+                    self.mazes.append(Maze())
                     self.cursor = MAZE_CURSOR
 
             elif self.cursor == ".":
@@ -304,7 +305,7 @@ class Game:
                     self.cursor = "."
 
             elif self.cursor == MAZE_CURSOR:
-                self.maze.add_point(true_mouse_x, true_mouse_y)
+                self.mazes[-1].add_point(true_mouse_x, true_mouse_y)
 
 
 
@@ -500,7 +501,8 @@ class Game:
         self.draw_stats()
         self.draw_menu()
         self.draw_cursor()
-        self.maze.draw()
+        for maze in self.mazes:
+            maze.draw()
 
 
     def run_updates(self):

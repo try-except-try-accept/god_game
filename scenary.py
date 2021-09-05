@@ -17,7 +17,7 @@ class Maze():
         start_x, start_y = [x, y]
 
         try:
-            end_x, end_y = self.points[-1]
+            end_x, end_y = self.vertices[-1]
         except IndexError:
             self.vertices.append([x, y])
             self.all_points.append([x, y])
@@ -57,7 +57,7 @@ class Maze():
 
         while eval(condition):
             condition = x_comp.format(start_x, end_x) + " or " + y_comp.format(start_y, end_y)
-            
+
             self.all_points.append([start_x, start_y])
             start_x += x_adjust
             start_y += y_adjust
@@ -67,13 +67,6 @@ class Maze():
     def draw(self):
         for p in self.all_points:
             pyxel.rect(viewport['x'] + int(p[0]), viewport['y'] + int(p[1]), 1, 1, MAZE_COLOUR)
-
-        for i, point in enumerate(self.points):
-            try:
-                next_point = self.points[i+1]
-            except IndexError:
-                break
-
 
 
 
