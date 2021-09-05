@@ -118,6 +118,7 @@ class Game:
         self.scenary = [Ore(randint(0, GAME_WIDTH), randint(0, HEIGHT)) for i in range(5)]
         self.scenary += [Ore(randint(-5000, 5000), randint(-5000, 5000)) for i in range(500)]
         self.buildings = [Home(WIDTH // 2, HEIGHT // 2, pre_built=True)]
+        self.buildings.append(Home(300, 300, pre_built=True, tribe=PLAYER_2))
         self.bit_selection = None
         self.selected_bits = []
         self.cursor = "."
@@ -127,10 +128,13 @@ class Game:
         self.left, self.right, self.up, self.down = False, False, False, False
         self.view_x_move = 0
         self.view_y_move = 0
+        self.maze = Maze()
 
 
         for object in IMPLEMENTED_BUILDINGS:
             self.icons.update({object.symbol: {"y": 0, "constructor": object, "type": object.build_type}})
+
+
 
 
 
@@ -277,10 +281,11 @@ class Game:
                             if len(self.buildings) < BUILDING_LIMIT-1:
                                 self.cursor = icon
 
-                if true_mouse_y >= HEIGHT-10:
+                if true_mouse_y >= HEIGHT-ICON_SPACER:
                     print("skipping")
                     prep_music()
-                    
+                elif true_mouse_y >= HEIGHT - (ICON_SPACER*2):
+                    self.cursor = MAZE_CURSOR
 
             elif self.cursor == ".":
                 self.bit_selection = Selection(true_mouse_x, true_mouse_y)
@@ -297,6 +302,10 @@ class Game:
                         self.being_built.append(new_building)
                 else:
                     self.cursor = "."
+
+            elif self.cursor == MAZE_CURSOR:
+                self.maze.add_point(true_mouse_x, true_mouse_y)
+
 
 
             else:
@@ -464,9 +473,16 @@ class Game:
             self.icons[icon]["y"] = (y)
             pyxel.text(x, y, icon, colour)
 
+        self.draw_music()
+        self.draw_maze()
+
     def draw_music(self):
         #pyxel.rect(GAME_WIDTH, 0, 10, HEIGHT-10, MENU_COLOUR)
-        pyxel.text(GAME_WIDTH+3, HEIGHT-10, ">", ICON_COLOUR)
+        pyxel.text(GAME_WIDTH+3, HEIGHT-ICON_SPACER, ">", ICON_COLOUR)
+
+    def draw_maze(self):
+        #pyxel.rect(GAME_WIDTH, 0, 10, HEIGHT-10, MENU_COLOUR)
+        pyxel.text(GAME_WIDTH+3, HEIGHT-(ICON_SPACER*2), "M", ICON_COLOUR)
 
     def draw_cursor(self):
 
@@ -484,7 +500,8 @@ class Game:
         self.draw_stats()
         self.draw_menu()
         self.draw_cursor()
-        self.draw_music()
+        self.maze.draw()
+
 
     def run_updates(self):
         pass

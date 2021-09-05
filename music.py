@@ -71,7 +71,7 @@ def prep_music():
     for i in range(8):
         melody = ""
         if probability(50):
-            root = randint(0, len(scale))
+            root = randint(0, len(scale)-1)
         else:
             root = len(scale) // 2
 

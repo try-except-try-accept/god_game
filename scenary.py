@@ -4,6 +4,83 @@ import pyxel
 from config import *
 from game_element import GameElement
 
+
+class Maze():
+
+    def __init__(self):
+
+        self.vertices = []
+        self.all_points = []
+
+    def add_point(self, x, y):
+
+        start_x, start_y = [x, y]
+
+        try:
+            end_x, end_y = self.points[-1]
+        except IndexError:
+            self.vertices.append([x, y])
+            self.all_points.append([x, y])
+            print("First vertex of maze")
+            return
+
+        self.vertices.append([x, y])
+
+        x_adjust = end_x - start_x
+        y_adjust = end_y - start_y
+
+        x_dir, y_dir = True, True
+
+        x_comp = "{} < {}"
+        if x_adjust < 0:
+            x_dir = False
+            x_comp = "{} > {}"
+
+        y_comp = "{} < {}"
+        if y_adjust < 0:
+            y_dir = False
+            y_comp = "{} > {}"
+
+        if abs(x_adjust) > abs(y_adjust):
+            y_adjust = y_adjust / abs(x_adjust)
+            x_adjust = 1
+            if not x_dir:
+                x_adjust = -1
+        else:
+
+            x_adjust = x_adjust / abs(y_adjust)
+            y_adjust = 1
+            if not y_dir:
+                y_adjust = -1
+
+        condition = x_comp.format(start_x, end_x) + " or " + y_comp.format(start_y, end_y)
+
+        while eval(condition):
+            condition = x_comp.format(start_x, end_x) + " or " + y_comp.format(start_y, end_y)
+            
+            self.all_points.append([start_x, start_y])
+            start_x += x_adjust
+            start_y += y_adjust
+
+
+
+    def draw(self):
+        for p in self.all_points:
+            pyxel.rect(viewport['x'] + int(p[0]), viewport['y'] + int(p[1]), 1, 1, MAZE_COLOUR)
+
+        for i, point in enumerate(self.points):
+            try:
+                next_point = self.points[i+1]
+            except IndexError:
+                break
+
+
+
+
+
+
+
+
 class Ore(GameElement):
 
     def __init__(self, x, y, tribe=NEUTRAL):
