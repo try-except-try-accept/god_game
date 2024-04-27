@@ -108,7 +108,7 @@ class Selection:
 class Game:
     def __init__(self, width=100, height=600):
 
-        pyxel.init(WIDTH, HEIGHT, caption="GODGAME")
+        pyxel.init(WIDTH, HEIGHT, title="GODGAME")
         pyxel.load("sprites.pyxres")
 
         self.ore = 50
@@ -191,7 +191,7 @@ class Game:
                     self.bits.append(spawn)
                     self.bits = sorted(self.bits)
 
-        if pyxel.btnp(pyxel.MOUSE_RIGHT_BUTTON):
+        if pyxel.btnp(pyxel.MOUSE_BUTTON_RIGHT):
             self.cursor = "."
             for b in self.selected_bits:  ## make bits go in a grid when idle?
                 b.deselect()
@@ -211,25 +211,25 @@ class Game:
 
 
 
-        if pyxel.btnp(pyxel.KEY_LEFT):
+        if pyxel.btnp(pyxel.KEY_A):
             self.left = True
-        elif pyxel.btnr(pyxel.KEY_LEFT):
+        elif pyxel.btnr(pyxel.KEY_A):
             self.left = False
 
-        if pyxel.btnp(pyxel.KEY_RIGHT):
+        if pyxel.btnp(pyxel.KEY_D):
             self.right = True
 
-        elif pyxel.btnr(pyxel.KEY_RIGHT):
+        elif pyxel.btnr(pyxel.KEY_D):
             self.right = False
 
-        if pyxel.btnp(pyxel.KEY_DOWN):
+        if pyxel.btnp(pyxel.KEY_S):
               self.down = True
-        elif pyxel.btnr(pyxel.KEY_DOWN):
+        elif pyxel.btnr(pyxel.KEY_S):
             self.down = False
 
-        if pyxel.btnp(pyxel.KEY_UP):
+        if pyxel.btnp(pyxel.KEY_W):
             self.up = True
-        elif pyxel.btnr(pyxel.KEY_UP):
+        elif pyxel.btnr(pyxel.KEY_W):
             self.up = False
 
 
@@ -268,7 +268,7 @@ class Game:
 
 
 
-        if pyxel.btnp(pyxel.MOUSE_LEFT_BUTTON):
+        if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
 
 
             if true_mouse_x >= GAME_WIDTH:
@@ -394,7 +394,7 @@ class Game:
 
 
 
-        elif pyxel.btnr(pyxel.MOUSE_LEFT_BUTTON):
+        elif pyxel.btnr(pyxel.MOUSE_BUTTON_LEFT):
 
             if self.bit_selection:
 
@@ -509,5 +509,7 @@ class Game:
         pass
 
 
-Game()
+if __name__ == "__main__":
+
+    Game()
 

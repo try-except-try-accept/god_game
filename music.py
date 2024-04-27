@@ -148,40 +148,40 @@ def prep_music():
 
     print(final_melody)
 
-    speed = randint(10, 20)
+    speed = randint(10, 50)
 
     # Music
     # List of effects(0:None / 1:Slide / 2:Vibrato / 3:FadeOut)
-    pyxel.sound(2).set(
-        note=final_melody,
-        tone="t",
-        volume=("1"),
-        effect=(""),
+    pyxel.sounds[2].set(
+        notes=final_melody,
+        tones="t",
+        volumes="1",
+        effects="",
         speed=speed,
     )
 
-    pyxel.sound(1).set(
-        note=bass,
-        tone="P",
-        volume=("3"),
-        effect=(""),
+    pyxel.sounds[1].set(
+        notes=bass,
+        tones="P",
+        volumes="3",
+        effects="",
         speed=speed,
     )
 
-    pyxel.sound(3).set(
-        note=drums,
-        tone="N",
-        volume=("3"),
-        effect=(""),
+    pyxel.sounds[3].set(
+        notes=drums,
+        tones="N",
+        volumes="3",
+        effects="",
         speed=speed,
     )
 
   
-    pyxel.sound(4).set(
-        note=("f0 r a4 r  f0 f0 a4 r" "f0 r a4 r   f0 f0 a4 f0"),
-        tone="n",
-        volume="6622 6622 6622 6426",
-        effect="f",
+    pyxel.sounds[4].set(
+        notes=("f0 r a4 r  f0 f0 a4 r" "f0 r a4 r   f0 f0 a4 f0"),
+        tones="n",
+        volumes="6622 6622 6622 6426",
+        effects="f",
         speed=20,
     )
 
